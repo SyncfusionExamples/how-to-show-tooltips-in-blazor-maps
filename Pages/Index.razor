@@ -1,5 +1,4 @@
-﻿@page "/"
-
+@page "/"
 
 <SfMaps TooltipDisplayMode="TooltipGesture.Click">
     <MapsTitleSettings Text="Finalist in Cricket World Cup"></MapsTitleSettings>
@@ -7,41 +6,32 @@
         <MapsLayer ShapeData='new {dataOptions= "https://cdn.syncfusion.com/maps/map-data/world-map.json"}'
                    TValue="CountryData" ShapeDataPath="Name" ShapePropertyPath='new string[] {"name"}'
                    DataSource='@PerformanceReport'>
-            @*<MapsLayerTooltipSettings Visible="true" ValuePath="CountryName" 
-               Format="<b>${CountryName}</b><br>Win: <b>${Finalist}</b>">
-        </MapsLayerTooltipSettings>*@
-            <MapsLayerTooltipSettings Visible="true" ValuePath="CountryName" Fill="#CD5C5C">
-                @*<TooltipTemplate>
-                @{
-                    var MapData = context as CountryData;
-                    <div id="template">
-                        <div class="tooltip-wrapper">
-                            <div class="listing2">
-                                <center>
-                                    @MapData.CountryName
-                                </center>
-                            </div>
-                            <hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD">
-                            <div>
-                                <center>
-                                    <span class="listing1">Win : </span>
-                                    <span class="listing2">@MapData.Finalist</span>
-                                </center>
+            <MapsLayerTooltipSettings Visible="true" ValuePath="Name">
+                <TooltipTemplate>
+                    @{
+                        var MapData = context as CountryData;
+                        <div id="template">
+                            <div class="tooltip-wrapper">
+                                <div class="listing2">
+                                    <center> @MapData.Name</center>
+                                </div>
+                                <hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD">
+                                <div>
+                                    <center>
+                                        <span class="listing1">Win : </span>
+                                        <span class="listing2">@MapData.Winner</span>
+                                    </center>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
-            </TooltipTemplate>*@
-
+                    }
+                </TooltipTemplate>
             </MapsLayerTooltipSettings>
-
             <MapsShapeSettings Fill="#E5E5E5" ColorValuePath="Finalist">
-
                 <MapsShapeColorMappings>
                     <MapsShapeColorMapping Value="1" Color='new string[] {"#acaed8"}'></MapsShapeColorMapping>
                     <MapsShapeColorMapping Value="2" Color='new string[] {"#80c1ff"}'></MapsShapeColorMapping>
                     <MapsShapeColorMapping Value="3" Color='new string[] {"#1a90ff"}'></MapsShapeColorMapping>
-                    <MapsShapeColorMapping Value="4" Color='new string[] {"#005cb3"}'></MapsShapeColorMapping>
                     <MapsShapeColorMapping Value="7" Color='new string[] {"#0b0d35"}'></MapsShapeColorMapping>
                 </MapsShapeColorMappings>
 
@@ -59,30 +49,26 @@
         public string Name { get; set; }
         public string Winner { get; set; }
         public string Finalist { get; set; }
-        public string CountryName { get; set; }
     }
 
     public List<CountryData> PerformanceReport = new List<CountryData>
-
     {
-
-            new CountryData { CountryName="India", Name="India", Finalist="3", Winner="2" },
-            new CountryData { CountryName="United Kingdom", Name="United Kingdom", Finalist="4", Winner="1" },
-            new CountryData { CountryName="Australia", Name="Australia", Finalist="7", Winner="5" },
-            new CountryData { CountryName="Sri Lanka", Name="Sri Lanka", Finalist="3", Winner="1"},
-            new CountryData { CountryName="Pakistan", Name="Pakistan", Finalist="2", Winner="1"  },
-            new CountryData { CountryName="New Zealand", Name="New Zealand", Finalist="1", Winner="0"},
-            new CountryData { CountryName="West Indies", Name="Dominican Rep", Finalist="3", Winner="2"},
-            new CountryData { CountryName="West Indies", Name="Cuba", Finalist="3", Winner="2"},
-            new CountryData { CountryName="West Indies", Name="Jamaica", Finalist="3", Winner="2"},
-            new CountryData { CountryName="West Indies", Name="Haiti", Finalist="3", Winner="2"},
-            new CountryData { CountryName="West Indies",Name="Gayana", Finalist="3", Winner="2"},
-            new CountryData { CountryName="West Indies", Name="Suriname", Finalist="3", Winner="2"}, 
-            new CountryData { CountryName="West Indies", Name="Trinidad and Tobago", Finalist="3", Winner="2"}
+            new CountryData { Name="India", Finalist="3", Winner="2" },
+            new CountryData { Name="Australia", Finalist="7", Winner="5" },
+            new CountryData { Name="Sri Lanka", Finalist="3", Winner="1"},
+            new CountryData { Name="Pakistan", Finalist="2", Winner="1"  },
+            new CountryData { Name="United Kingdom", Finalist="3", Winner="0"  },
+            new CountryData { Name="New Zealand", Finalist="1", Winner="0"},
+            new CountryData { Name="Dominican Republic", Finalist="3", Winner="2"},
+            new CountryData { Name="Cuba", Finalist="3", Winner="2"},
+            new CountryData { Name="Jamaica", Finalist="3", Winner="2"},
+            new CountryData { Name="Haiti", Finalist="3", Winner="2"},
+            new CountryData { Name="Guyana", Finalist="3", Winner="2"},
+            new CountryData { Name="Suriname", Finalist="3", Winner="2"},
+            new CountryData { Name="Trinidad and Tobago", Finalist="3", Winner="2"}
     };
 
 }
-
 
 
 
@@ -115,6 +101,5 @@
         color: #ffffff;
         font-weight: 500;
     }
-   
    
 </style>
